@@ -47,7 +47,6 @@ public class Main {
         return scrobbles;
     }
     public static void sendScrobbles(ArrayList<Scrobble> scrobbleList, Session session) {
-        Caller.getInstance().setApiRootUrl(API);
         List<ScrobbleData> scrobbleDatList = new ArrayList<>();
         for (int i = 0; i < scrobbleList.size(); i++) {
             if (i%50 == 0 && i != 0) {
@@ -115,6 +114,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Caller.getInstance().setApiRootUrl(API);
         File conf = new File(SESSION_PATH);
         if (conf.canRead() && conf.exists()) {
             try {
@@ -145,7 +145,7 @@ public class Main {
             File log = new File(logPath);
             if (log.exists()) {
                 ArrayList<Scrobble> scrobbles = parseScrobbles(logPath,DEVICE_ROOT);
-                if (scrobbles.isEmpty()) {
+                if (scrobbles.size() == 0) {
                     JOptionPane.showMessageDialog(null,"Nothing to scrobble!");
                 } else {
                     JOptionPane.showMessageDialog(null,"Press OK to submit "+scrobbles.size()+" scrobbles");
