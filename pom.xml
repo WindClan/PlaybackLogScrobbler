@@ -6,7 +6,7 @@
 
     <groupId>windclan</groupId>
     <artifactId>PlaybackLogScrobbler</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <dependencies>
         <dependency>
             <groupId>net.jthink</groupId>

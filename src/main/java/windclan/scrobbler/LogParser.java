@@ -30,7 +30,7 @@ public class LogParser {
                                 AudioFile musicFile = AudioFileIO.read(musicFileFile);
                                 Tag meta = musicFile.getTag();
                                 if (meta.hasField(FieldKey.TITLE) && meta.hasField(FieldKey.ARTIST)) {
-                                    Scrobble curScrobble = new Scrobble(meta.getFirst(FieldKey.TITLE),meta.getFirst(FieldKey.ARTIST),timestamp,(int)Math.round(length/1000.0),elapsed/1000.0);
+                                    Scrobble curScrobble = new Scrobble(meta.getFirst(FieldKey.ARTIST),meta.getFirst(FieldKey.TITLE),timestamp,(int)Math.round(length/1000.0),elapsed/1000.0);
                                     list.add(curScrobble);
                                 }
                             }
