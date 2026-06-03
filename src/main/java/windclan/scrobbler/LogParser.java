@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LogParser {
-    public static int TIMEZONE_OFFSET = Math.toIntExact(Math.round(ChronoUnit.SECONDS.between(LocalDateTime.now(ZoneId.of("UTC")), LocalDateTime.now())));
+    public static int TIMEZONE_OFFSET = Math.toIntExact(Math.round(ChronoUnit.SECONDS.between(LocalDateTime.now(), LocalDateTime.now(ZoneId.of("UTC")))));
 
     public static ArrayList<Scrobble> parseLog(String logPath, String deviceRoot) {
         File logFile = new File(logPath);

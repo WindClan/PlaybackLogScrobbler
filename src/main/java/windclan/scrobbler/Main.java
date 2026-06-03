@@ -18,6 +18,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
+import static windclan.scrobbler.LogParser.TIMEZONE_OFFSET;
+
 public class Main {
     public static String API = "https://ws.audioscrobbler.com/2.0";
     public static String API_KEY = "c8165a5013dab1a9628d7a4781adaf5e";
@@ -112,6 +114,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        System.out.println("Timezone Offset: "+TIMEZONE_OFFSET);
         Caller.getInstance().setApiRootUrl(API);
         File conf = new File(SESSION_PATH);
         if (conf.canRead() && conf.exists()) {
