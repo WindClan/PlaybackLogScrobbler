@@ -5,12 +5,10 @@ import de.umass.lastfm.Caller;
 import de.umass.lastfm.Session;
 import de.umass.lastfm.Track;
 import de.umass.lastfm.scrobble.ScrobbleData;
-import de.umass.lastfm.scrobble.ScrobbleResult;
 import nz.ac.waikato.cms.adams.simpledirectorychooser.SimpleDirectoryChooser;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -151,7 +149,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null,"Press OK to submit "+scrobbles.size()+" scrobbles");
                     Session s = Session.createSession(API_KEY,SHARED_SECRET,SESSION_KEY);
                     sendScrobbles(scrobbles,s);
-                    String oldLogPath = DEVICE_ROOT+".rockbox/playback.log";
+                    String oldLogPath = DEVICE_ROOT+".rockbox/playback_old.log";
                     File oldLog = new File(oldLogPath);
                     try {
                         Files.copy(log.toPath(),oldLog.toPath(), StandardCopyOption.REPLACE_EXISTING);

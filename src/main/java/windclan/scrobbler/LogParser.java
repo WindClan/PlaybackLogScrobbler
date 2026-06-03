@@ -6,10 +6,15 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LogParser {
+    public static int TIMEZONE_OFFSET = Math.toIntExact(Math.round(ChronoUnit.SECONDS.between(LocalDateTime.now(ZoneId.of("UTC")), LocalDateTime.now())));
+
     public static ArrayList<Scrobble> parseLog(String logPath, String deviceRoot) {
         File logFile = new File(logPath);
         if (logFile.exists() && logFile.canRead()) {
@@ -20,7 +25,7 @@ public class LogParser {
                     String curLine = scan.nextLine();
                     if (!curLine.startsWith("#") && !curLine.isEmpty()) {
                         String[] splitStr = curLine.split(":");
-                        int timestamp = Integer.parseInt(splitStr[0]);
+                        int timestamp = Integer.parseInt(splitStr[0])+TIMEZONE_OFFSET;
                         int elapsed = Integer.parseInt(splitStr[1]);
                         int length = Integer.parseInt(splitStr[2]);
                         if (length >= 30*1000 && (elapsed >= (length/2) || elapsed >= 4*60*1000)) {
